@@ -27,7 +27,7 @@ VALIDATE(){
     fi
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp Mongodb.repo /etc/yum.repos.d/Mongodb.repo &>> $LOGFILE
 
 VALIDATE $? "Copied MongoDB to yum.repos.d"
 
