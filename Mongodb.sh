@@ -49,7 +49,7 @@ VALIDATE $? "Editing of MongoDB conf"
 
 systemctl restart mongod &>> $LOGFILE
 
-VALIDATE $? "Restarting of Mongodb"
+VALIDATE $? "Restarting of MongoDB"
 
 
 
