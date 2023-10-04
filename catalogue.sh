@@ -27,62 +27,62 @@ VALIDATE(){
 }
 
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $LOG_FILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $LOG_FILE
 
 VALIDATE $? "setting up npm source"
 
-yum install nodejs -y &>> $LOG_FILE
+yum install nodejs -y  &>> $LOG_FILE
 
 VALIDATE $? "Installing nodejs"
 
-useradd roboshop &>> $LOG_FILE
+useradd roboshop  &>> $LOG_FILE
 
 VALIDATE $? "User adding roboshop"
 
-mkdir /app &>> $LOG_FILE
+mkdir /app  &>> $LOG_FILE
 
 VALIDATE $? "Making directiory app"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOG_FILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>> $LOG_FILE
 
 VALIDATE $? "Downloading application code"
 
-cd /app &>> $LOG_FILE
+cd /app &>>  $LOG_FILE
 
 VALIDATE $? "Change dir app"
 
-unzip /tmp/catalogue.zip &>> $LOG_FILE
+unzip /tmp/catalogue.zip  &>> $LOG_FILE
 
 VALIDATE $? "Unzipping catalogue.zip"
 
-cd /app &>> $LOG_FILE
+cd /app  &>> $LOG_FILE
 
 VALIDATE $? "Change dir app"
 
-npm install  &>> $LOG_FILE
+npm install     &>> $LOG_FILE
 
 VALIDATE $? "Installing npm source"
 
-cp Catalogue.service /etc/systemd/system/catalogue.service &>> $LOG_FILE
+cp Catalogue.service /etc/systemd/system/catalogue.service  &>> $LOG_FILE
 
 VALIDATE $? "copying catalogue service"
 
-systemctl daemon-reload &>> $LOG_FILE
+systemctl daemon-reload  &>> $LOG_FILE
 
 VALIDATE $? "Reloading catalogue"
 
-systemctl enable catalogue &>> $LOG_FILE
+systemctl enable catalogue  &>> $LOG_FILE
 
 VALIDATE $? "Enabling catalogue"
 
-systemctl start catalogue &>> $LOG_FILE
+systemctl start catalogue  &>> $LOG_FILE
 
 VALIDATE $? "Starting catalogue"
 
-yum install mongodb-org-shell -y &>> $LOG_FILE
+yum install mongodb-org-shell -y  &>> $LOG_FILE
 
 VALIDATE $? "Installing mongodb-org-shell"
 
-mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js &>> $LOG_FILE
+mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>> $LOG_FILE
 
 VALIDATE $? "Loading schema"
