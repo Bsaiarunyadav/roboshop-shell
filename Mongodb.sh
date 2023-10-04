@@ -53,3 +53,14 @@ VALIDATE $? "Restarting MonogoDB"
 
 
 
+# to check the logs ---> tail -f /tmp/Mongodb.sh-2023-10-03.log
+
+
+
+# #As it fails at installation step ... There are 2 possibilities for failing at this step.
+# make sure mongodb repo file is properly copied...
+# go to /etc/yum.repos.d folder location from terminal and verify mongodb.repo exists or not.
+# if exists, then open it and cross check with file in git repo if something is added or removed by mistake.
+# also files names are case sensitive.... just cross check whether the repofile is mongodb.repo or Mongodb.repo
+# u can also open log file and see whats the exact issue...
+# LOG_FILE=/tmp/$SCRIPT_NAME-$DATE.log - log file location
