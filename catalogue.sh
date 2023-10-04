@@ -27,23 +27,23 @@ VALIDATE(){
 }
 
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $LOG_FILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $LOGFILE
 
 VALIDATE $? "setting up npm source"
 
-yum install nodejs -y  &>> $LOG_FILE
+yum install nodejs -y  &>> $LOGFILE
 
 VALIDATE $? "Installing nodejs"
 
-useradd roboshop  &>> $LOG_FILE
+useradd roboshop  &>> $LOGFILE
 
 VALIDATE $? "User adding roboshop"
 
-mkdir /app  &>> $LOG_FILE
+mkdir /app  &>> $LOGFILE
 
 VALIDATE $? "Making directiory app"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>> $LOG_FILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>> $LOGFILE
 
 VALIDATE $? "Downloading application code"
 
@@ -51,38 +51,38 @@ cd /app &>>  $LOG_FILE
 
 VALIDATE $? "Change dir app"
 
-unzip /tmp/catalogue.zip  &>> $LOG_FILE
+unzip /tmp/catalogue.zip  &>> $LOGFILE
 
 VALIDATE $? "Unzipping catalogue.zip"
 
-cd /app  &>> $LOG_FILE
+cd /app  &>> $LOGFILE
 
 VALIDATE $? "Change dir app"
 
-npm install     &>> $LOG_FILE
+npm install     &>> $LOGFILE
 
 VALIDATE $? "Installing npm source"
 
-cp Catalogue.service /etc/systemd/system/catalogue.service  &>> $LOG_FILE
+cp Catalogue.service /etc/systemd/system/catalogue.service  &>> $LOGFILE
 
 VALIDATE $? "copying catalogue service"
 
-systemctl daemon-reload  &>> $LOG_FILE
+systemctl daemon-reload  &>> $LOGFILE
 
 VALIDATE $? "Reloading catalogue"
 
-systemctl enable catalogue  &>> $LOG_FILE
+systemctl enable catalogue  &>> $LOGFILE
 
 VALIDATE $? "Enabling catalogue"
 
-systemctl start catalogue  &>> $LOG_FILE
+systemctl start catalogue  &>> $LOGFILE
 
 VALIDATE $? "Starting catalogue"
 
-yum install mongodb-org-shell -y  &>> $LOG_FILE
+yum install mongodb-org-shell -y  &>> $LOGFILE
 
 VALIDATE $? "Installing mongodb-org-shell"
 
-mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>> $LOG_FILE
+mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>> $LOGFILE
 
 VALIDATE $? "Loading schema"
