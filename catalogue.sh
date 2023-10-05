@@ -84,7 +84,7 @@ systemctl enable catalogue  &>>$LOGFILE
 
 VALIDATE $? "Enabling catalogue"
 
-systemctl start catalogue  &>>$LOGFILE
+systemctl start catalogue  &>>$LOGFILEks
 
 VALIDATE $? "Starting catalogue"
 
