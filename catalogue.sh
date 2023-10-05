@@ -27,62 +27,79 @@ VALIDATE(){
 }
 
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $LOGFILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
 
 VALIDATE $? "setting up npm source"
 
-yum install nodejs -y  &>> $LOGFILE
+yum install nodejs -y  &>>$LOGFILE
 
 VALIDATE $? "Installing nodejs"
 
-useradd roboshop  &>> $LOGFILE
+useradd   &>>$LOGFILE
+#Here we are not giving the validation as if once the user was created then 2nd time it will be failed definetly.
+#IMPROVEMENT:- 1st check the user already exists or not if not exist then create.
 
-VALIDATE $? "User adding roboshop"
+# To check user :- cd /var
+                #id roboshop
 
-mkdir /app  &>> $LOGFILE
+# if the user was added already then $? will be 1 if user not added then $? will be "0"
 
-VALIDATE $? "Making directiory app"
+mkdir /app  &>>$LOGFILE
+# Here also we wont right the validation if the /app dirc was already present then it will be failed . 
+# Write a condition to check the directory already exist or not .
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>> $LOGFILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>>$LOGFILE
 
-VALIDATE $? "Downloading application code"
+VALIDATE $? "Downloading catalogue artifact"
 
-cd /app  &>> $LOGFILE
+cd /app  &>>$LOGFILE
 
 VALIDATE $? "Change dir app"
 
-unzip /tmp/catalogue.zip  &>> $LOGFILE
+unzip /tmp/catalogue.zip  &>>$LOGFILE
 
 VALIDATE $? "Unzipping catalogue.zip"
 
-cd /app  &>> $LOGFILE
+cd /app  &>>$LOGFILE
 
-VALIDATE $? "Change dir app"
+VALIDATE $? "Moving dir app"
 
-npm install     &>> $LOGFILE
+npm install  &>>$LOGFILE
 
-VALIDATE $? "Installing npm source"
+VALIDATE $? "Installing dependencies"
 
-cp Catalogue.service /etc/systemd/system/catalogue.service  &>> $LOGFILE
+# And here we will copy instead of editing as we already created the "catalogue.service"
+
+# here we are giving the full path but not the absolute path .
+# Give the ull path of catalogue.service beacuse we are inside /app
+cp Catalogue.Service /etc/systemd/system/catalogue.service  &>>$LOGFILE
 
 VALIDATE $? "copying catalogue service"
 
-systemctl daemon-reload  &>> $LOGFILE
+systemctl daemon-reload  &>>$LOGFILE
 
 VALIDATE $? "Reloading catalogue"
 
-systemctl enable catalogue  &>> $LOGFILE
+systemctl enable catalogue  &>>$LOGFILE
 
 VALIDATE $? "Enabling catalogue"
 
-systemctl start catalogue  &>> $LOGFILE
+systemctl start catalogue  &>>$LOGFILE
 
 VALIDATE $? "Starting catalogue"
 
-yum install mongodb-org-shell -y  &>> $LOGFILE
+yum install mongodb-org-shell -y  &>>$LOGFILE
 
 VALIDATE $? "Installing mongodb-org-shell"
 
-mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>> $LOGFILE
+mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>>$LOGFILE
 
 VALIDATE $? "Loading schema"
+
+
+
+
+
+# Here there is a small issue .
+
+# we are taking the root access so we are in the root folder . and in the script we are moving the directories .so we give the full path insted of absolute path @ catalogue.service.
