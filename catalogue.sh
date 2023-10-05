@@ -35,7 +35,7 @@ yum install nodejs -y  &>>$LOGFILE
 
 VALIDATE $? "Installing nodejs"
 
-useradd   &>>$LOGFILE
+useradd roboshop  &>>$LOGFILE
 #Here we are not giving the validation as if once the user was created then 2nd time it will be failed definetly.
 #IMPROVEMENT:- 1st check the user already exists or not if not exist then create.
 
@@ -47,6 +47,7 @@ useradd   &>>$LOGFILE
 mkdir /app  &>>$LOGFILE
 # Here also we wont right the validation if the /app dirc was already present then it will be failed . 
 # Write a condition to check the directory already exist or not .
+
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip   &>>$LOGFILE
 
@@ -71,7 +72,7 @@ VALIDATE $? "Installing dependencies"
 # And here we will copy instead of editing as we already created the "catalogue.service"
 
 # here we are giving the full path but not the absolute path .
-# Give the ull path of catalogue.service beacuse we are inside /app
+# Give the full path of catalogue.service beacuse we are inside /app
 cp catalogue.service /etc/systemd/system/catalogue.service  &>>$LOGFILE
 
 VALIDATE $? "copying catalogue service"
