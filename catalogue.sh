@@ -72,7 +72,7 @@ VALIDATE $? "Installing dependencies"
 
 # here we are giving the full path but not the absolute path .
 # Give the ull path of catalogue.service beacuse we are inside /app
-cp Catalogue.Service /etc/systemd/system/catalogue.service  &>>$LOGFILE
+cp catalogue.service /etc/systemd/system/catalogue.service  &>>$LOGFILE
 
 VALIDATE $? "copying catalogue service"
 
