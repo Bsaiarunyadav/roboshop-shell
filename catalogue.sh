@@ -90,7 +90,7 @@ VALIDATE $? "Starting catalogue"
 
 yum install mongodb-org-shell -y  &>>$LOGFILE
 
-VALIDATE $? "Installing mongodb-org-shell"
+VALIDATE $? "Installing mongodb-org-shell client"
 
 mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>>$LOGFILE
 
