@@ -27,7 +27,7 @@ VALIDATE(){
 }
 
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOGFILE
 
 VALIDATE $? "setting up npm source"
 
@@ -61,10 +61,6 @@ unzip /tmp/catalogue.zip  &>>$LOGFILE
 
 VALIDATE $? "Unzipping catalogue.zip"
 
-cd /app  &>>$LOGFILE
-
-VALIDATE $? "Moving dir app"
-
 npm install  &>>$LOGFILE
 
 VALIDATE $? "Installing dependencies"
@@ -73,7 +69,7 @@ VALIDATE $? "Installing dependencies"
 
 # here we are giving the full path but not the absolute path .
 # Give the full path of catalogue.service beacuse we are inside /app
-cp catalogue.service /etc/systemd/system/catalogue.service  &>>$LOGFILE
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service  &>>$LOGFILE
 
 VALIDATE $? "copying catalogue service"
 
