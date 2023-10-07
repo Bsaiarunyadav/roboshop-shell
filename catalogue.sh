@@ -93,7 +93,7 @@ VALIDATE $? "Installing mongodb-org-shell client"
 
 mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>>$LOGFILE
 
-VALIDATE $? "Loading schema"
+VALIDATE $? "Loading schema" 
 
 
 
