@@ -104,3 +104,7 @@ VALIDATE $? "Loading schema"
 # Here there is a small issue .
 
 # we are taking the root access so we are in the root folder . and in the script we are moving the directories .so we give the full path insted of absolute path @ catalogue.service.
+
+
+
+
