@@ -85,7 +85,7 @@ systemctl start catalogue  &>>$LOGFILE
 
 VALIDATE $? "Starting catalogue"
 
-yum install mongodb-org-shell -y  &>>$LOGFILE
+yum install mongodb-org -y  &>>$LOGFILE
 
 VALIDATE $? "Installing mongodb-org-shell client"
 
