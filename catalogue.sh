@@ -85,9 +85,13 @@ systemctl start catalogue  &>>$LOGFILE
 
 VALIDATE $? "Starting catalogue"
 
-yum install mongodb-org -y  &>>$LOGFILE
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 
-VALIDATE $? "Installing mongodb-org-shell client"
+VALIDATE $? "copying mongorepo"
+
+yum install mongodb-org-shell -y  &>>$LOGFILE
+
+VALIDATE $? "installing mongo client"
 
 mongo --host mongodb.awsdevopsjoin.online </app/schema/catalogue.js  &>>$LOGFILE
 
