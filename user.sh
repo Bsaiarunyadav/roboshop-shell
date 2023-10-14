@@ -31,7 +31,6 @@ VALIDATE(){
 }
 
 
-
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
 
 VALIDATE $? "Nodejs nodesource"
@@ -40,6 +39,7 @@ yum install nodejs -y  &>>$LOGFILE
 
 VALIDATE $? "Installing node js"
 
+useradd roboshop  &>>$LOGFILE
 
 if id "$username"
     then
@@ -50,9 +50,9 @@ if id "$username"
 fi
 
 
-useradd roboshop  &>>$LOGFILE
-
 VALIDATE $? "User add"
+
+mkdir /app  &>>$LOGFILE
 
 if [ -d "$directory" ]; 
     # Directory exists, skip the step
@@ -63,9 +63,6 @@ else
     mkdir -e "$G $directory $N"
     echo -e "$Y Directory $directory has been created $N"
 fi
-
-
-mkdir /app  &>>$LOGFILE
   
 VALIDATE $? "Making dir app"
 
