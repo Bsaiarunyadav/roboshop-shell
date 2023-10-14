@@ -73,7 +73,7 @@ systemctl start user  &>>$LOGFILE
 
 VALIDATE $? "Starting user"
 
-cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo  &>>$LOGFILE
+cp /home/centos/roboshop-shell/Mongodb.repo /etc/yum.repos.d/Mongodb.repo  &>>$LOGFILE
 
 VALIDATE $? "Copying repo file"
 
