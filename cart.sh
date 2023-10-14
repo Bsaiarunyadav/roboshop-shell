@@ -47,7 +47,7 @@ VALIDATE $? "User adding roboshop"
 
 mkdir /app &>> $LOGFILE
 
-VALIDATE $> "making dir app"
+VALIDATE $? "making dir app"
 
 curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip  &>> $LOGFILE
 
