@@ -68,6 +68,10 @@ systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "daemon reload"
 
+systemctl unmask cart.service
+
+VALIDATE $? "unmasking cart service"
+
 systemctl enable cart  &>> $LOGFILE
 
 VALIDATE $? "Enabling cart"
