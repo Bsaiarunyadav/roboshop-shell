@@ -30,6 +30,17 @@ VALIDATE(){
     fi
 }
 
+
+
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
+
+VALIDATE $? "Nodejs nodesource"
+
+yum install nodejs -y  &>>$LOGFILE
+
+VALIDATE $? "Installing node js"
+
+
 if id "$username"
     then
         echo -e "$R User $username already exists. Skipping user creation $N"
@@ -37,6 +48,11 @@ if id "$username"
         useradd "$username"
         echo -e "$Y User $username has been added $N"
 fi
+
+
+useradd roboshop  &>>$LOGFILE
+
+VALIDATE $? "User add"
 
 if [ -d "$directory" ]; 
     # Directory exists, skip the step
@@ -48,20 +64,6 @@ else
     echo -e "$Y Directory $directory has been created $N"
 fi
 
-
-
-
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
-
-VALIDATE $? "Nodejs nodesource"
-
-yum install nodejs -y  &>>$LOGFILE
-
-VALIDATE $? "Installing node js"
-
-useradd roboshop  &>>$LOGFILE
-
-VALIDATE $? "User add"
 
 mkdir /app  &>>$LOGFILE
   
