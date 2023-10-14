@@ -10,6 +10,10 @@ N="\e[0m"
 Y="\e[33m"
 G="\e[32m"
 
+username="roboshop"
+
+directory="/app"
+
 
 if [ $USERID -ne 0 ];
 then 
@@ -25,6 +29,26 @@ VALIDATE(){
         echo -e "$2 ... $G SUCCESS $N"
     fi
 }
+
+if id "$username"
+    then
+        echo -e "$R User $username already exists. Skipping user creation $N"
+    else
+        useradd "$username"
+        echo -e "$Y User $username has been added $N"
+fi
+
+if [ -d "$directory" ]; 
+    # Directory exists, skip the step
+    then
+    echo -e "$R Directory $directory already exists. Skipping directory creation $N"
+else
+    # Directory does not exist, create the directory
+    mkdir -e "$G $directory $N"
+    echo -e "$Y Directory $directory has been created $N"
+fi
+
+
 
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$LOGFILE
