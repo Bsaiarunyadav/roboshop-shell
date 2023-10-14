@@ -14,6 +14,10 @@ username="roboshop"
 
 directory="/app"
 
+unzip_file="/tmp/user.zip"
+
+target_directory="/app"
+
 
 if [ $USERID -ne 0 ];
 then 
@@ -73,6 +77,16 @@ cd /app   &>>$LOGFILE
 VALIDATE $? "CD app"
 
 unzip /tmp/user.zip  &>>$LOGFILE
+
+if [ -e "$target_directory" ]; 
+    then
+    # Target exists, skip the unzipping step
+        echo "Target $target_directory already exists. Skipping unzipping."
+else
+    # Target does not exist, unzip the file
+    unzip "$zip_file" -d "$target_directory"
+    echo "File $zip_file has been unzipped to $target_directory."
+fi
 
 VALIDATE $? "unzippping user"
 
