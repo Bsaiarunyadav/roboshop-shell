@@ -49,7 +49,7 @@ useradd roboshop  &>>$LOGFILE
 
 VALIDATE $? "User add"
 
-mkdir /app  &>>$LOGFILE
+mkdir -p /app   &>>$LOGFILE
 
 # if [ -d "$directory" ]; 
 #     # Directory exists, skip the step
@@ -69,7 +69,7 @@ cd /app   &>>$LOGFILE
 
 VALIDATE $? "CD app"
 
-unzip /tmp/user.zip  &>>$LOGFILE
+unzip -o /tmp/user.zip  &>>$LOGFILE
 
 VALIDATE $? "unzippping user"
 
