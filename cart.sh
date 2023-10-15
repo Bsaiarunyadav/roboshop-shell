@@ -34,7 +34,14 @@ yum install nodejs -y  &>> $LOGFILE
  
 VALIDATE $? "installing nodejs"
 
-useradd roboshop  &>> $LOGFILE 
+id roboshop &>> $LOGFILE
+
+if [ $? -ne 0 ];
+    then 
+        useradd roboshop &>> $LOGFILE
+fi
+
+#useradd roboshop  &>> $LOGFILE 
 
 VALIDATE $? "User adding roboshop"
 
