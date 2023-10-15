@@ -34,7 +34,7 @@ cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOGFI
 
 VALIDATE $? "Copying MySQL repo" 
 
-yum install mysql-community-server -y &>> $LOGFILE
+yum install mysql-community-server -y  &>> $LOGFILE
 
 VALIDATE $? "Installing MySQL Server"
 
