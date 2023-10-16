@@ -66,6 +66,10 @@ mv target/shipping-1.0.jar shipping.jar  &>>$LOGFILE
 
 VALIDATE $? "Remaining shipping jar"
 
+sudo systemctl unmask shipping.service
+
+VALIDATE $? "Unmasking shipping service"
+
 cp /home/centos/roboshop-shell/shipping.service  /etc/systemd/system/shipping.service &>>$LOGFILE
 
 VALIDATE $? "Copying shipping service"
