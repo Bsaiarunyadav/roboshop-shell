@@ -36,16 +36,12 @@ yum install nodejs -y  &>>$LOGFILE
 
 VALIDATE $? "Installing node js"
 
-useradd roboshop  &>>$LOGFILE
+id roboshop &>>$LOGFILE
 
-# if id "$username"
-#     then
-#         echo -e "$R User $username already exists. Skipping user creation $N"
-#     else
-#         useradd "$username"
-#         echo -e "$Y User $username has been added $N"
-# fi
-
+if [ $? -ne 0 ];
+    then 
+        useradd roboshop &>> $LOGFILE
+fi
 
 VALIDATE $? "User add"
 
