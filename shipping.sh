@@ -33,11 +33,16 @@ yum install maven -y &>>$LOGFILE
 
 VALIDATE $? "installing maven"
 
-useradd roboshop &>>$LOGFILE
+id roboshop &>>$LOGFILE
+
+if [ $? -ne 0 ];
+    then 
+        useradd roboshop &>> $LOGFILE
+fi
 
 VALIDATE $? "Adding user roboshop"
 
-mkdir /app &>>$LOGFILE
+mkdir -p /app &>>$LOGFILE
 
 VALIDATE $? "Making dir app"
 
@@ -49,7 +54,7 @@ cd /app  &>>$LOGFILE
 
 VALIDATE $? "Changing app"
 
-unzip /tmp/shipping.zip  &>>$LOGFILE
+unzip -p /tmp/shipping.zip  &>>$LOGFILE
 
 VALIDATE $? "unzipping file"
 
