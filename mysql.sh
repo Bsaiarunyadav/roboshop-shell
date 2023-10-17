@@ -26,9 +26,9 @@ VALIDATE(){
     fi
 }
 
-yum module disable mysql -y &>> $LOGFILE
+# yum module disable mysql -y &>> $LOGFILE
 
-VALIDATE $? "Disabling the default version"
+# VALIDATE $? "Disabling the default version"
 
 cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOGFILE
 
