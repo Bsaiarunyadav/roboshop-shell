@@ -26,7 +26,14 @@ VALIDATE(){
     fi
 }
 
-yum module disable mysql -y &>> $LOGFILE
+if ! yum module list -e enabled mysql &> /dev/null; then
+    sudo yum module disable mysql -y
+else
+    echo "MySQL module is already disabled."
+fi
+
+
+#yum module disable mysql -y &>> $LOGFILE
 
 VALIDATE $? "Disabling the default version"
 
