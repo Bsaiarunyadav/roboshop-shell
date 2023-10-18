@@ -30,11 +30,16 @@ yum install python36 gcc python3-devel -y  &>>$LOGFILE
 
 VALIDATE $? "Installing python"
 
-useradd roboshop  &>>$LOGFILE
+id roboshop &>> $LOGFILE
+
+if [ $? -ne 0 ];
+    then 
+        useradd roboshop &>> $LOGFILE
+fi
 
 VALIDATE $? "Adding user"
 
-mkdir /app   &>>$LOGFILE
+mkdir -p /app   &>>$LOGFILE
 
 VALIDATE $? "Making dir app"
 
