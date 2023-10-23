@@ -4,7 +4,7 @@
 NAMES=("Web" "mongodb" "catlaogue" "cart" "user" "redis" "mysql" "shipping" "rabbitmq" "payment" "dispatch")
         
 
-For i in "${NAMES[@]}"  
+For $i in "${NAMES[@]}"  
 do 
     echo "ALL NAMES: $i"
 done 
