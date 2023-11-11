@@ -30,7 +30,7 @@ yum install python36 gcc python3-devel -y  &>>$LOGFILE
 
 VALIDATE $? "Installing python"
 
-id roboshop &>> $LOGFILE
+id roboshop &>> $LOGFILE #IF CONDITION FOR SKIPPING THE ID ROBOSHOP.
 
 if [ $? -ne 0 ];
     then 
@@ -39,7 +39,7 @@ fi
 
 VALIDATE $? "Adding user"
 
-mkdir -p /app   &>>$LOGFILE
+mkdir -p /app   &>>$LOGFILE   #to skip already created dir
 
 VALIDATE $? "Making dir app"
 
